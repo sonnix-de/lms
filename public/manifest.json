@@ -1,0 +1,13 @@
+{
+    "name": "Your Great Site",
+    "short_name": "Site 😎",
+    "description": "Learn how to create and share something or other.",
+    "background_color": "#000000",
+    "theme_color": "#0f4a73",
+    "display": "standalone",
+    "icons": [{
+      "src": "icon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }]
+  }
