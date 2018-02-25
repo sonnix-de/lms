@@ -25,7 +25,7 @@
             {!! \App\Helper\Helpers::getNavigationLink('Service','lms-service') !!}
             @endguest
       </ul>
-      <ul class="navbar-nav nav-right">
+      <ul class="navbar-nav ml-auto">
         @guest
         {!! \App\Helper\Helpers::getNavigationLink('Login','login') !!}
         {!! \App\Helper\Helpers::getNavigationLink('Register','register') !!}
