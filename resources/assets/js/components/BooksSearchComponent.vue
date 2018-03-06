@@ -27,7 +27,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tr v-for="book in books">
+            <tr :v-for="book in books">
                 <td> 
                      <router-link :to="{ name: 'book', params: { id: book.id }}">{{book.id}}</router-link>
                 </td>

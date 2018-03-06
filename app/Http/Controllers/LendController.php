@@ -15,4 +15,15 @@ class LendController extends LmsController
     {
         return view('lms.lends');
     }
+
+    public function lendBook(int $idUser, int $idBook)
+    {
+        return \App\Lend::lend($idUser,$idBook);
+    }
+
+    public function returnBook(int $idBook)
+    {
+        return \App\Lend::returnBook($idBook);
+    }
+
 }

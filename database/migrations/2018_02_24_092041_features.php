@@ -15,7 +15,8 @@ class Features extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',50);
+            $table->string('key',50);
+            $table->string('title',50)->nullable();
             $table->text('descr')->nullable();
             $table->string('route',250)->nullable();
             $table->integer('available')->default(1);

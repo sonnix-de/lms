@@ -12,8 +12,10 @@ class Books extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('books'); 
+        
+        
         Schema::dropIfExists('medium_types'); 
+        Schema::dropIfExists('books'); 
         
         Schema::create('medium_types', function(Blueprint $table)
         {
@@ -24,9 +26,7 @@ class Books extends Migration
 
         });
         //DB::statement('select * from medium_types');
-        DB::table('medium_types')->insert([
-            ['title' => 'buch'],
-        ]);
+        DB::table('medium_types')->insert([['title' => 'buch'],]);
 
     
         
@@ -35,7 +35,7 @@ class Books extends Migration
             $table->increments('id')->unsigned()->index();
             $table->integer('nr')->unique();
             $table->string('barcode',13);
-            $table->integer('id_medium_type');
+            $table->integer('id_medium_type')->unsigned()->nullable();
             $table->foreign('id_medium_type')->references('id')->on('medium_types');
             $table->string('isbn13',13)->nullable();
             $table->string('author',255)->nullable();
@@ -46,7 +46,6 @@ class Books extends Migration
             $table->string('publisher')->nullable();
             $table->string('published_date')->nullable();
             $table->string('published_location')->nullable();
-            
             $table->string('serie')->nullable();
             $table->string('signatur')->nullable();
             $table->string('category')->nullable();
@@ -55,7 +54,6 @@ class Books extends Migration
             $table->date('lib_removed_date')->nullable();
             $table->string('status')->nullable();
             $table->string('antonlin')->nullable();
-            
             $table->timestamps();
             $table->softDeletes();
         });
@@ -69,7 +67,8 @@ class Books extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medium_types'); 
         Schema::dropIfExists('books');
+        Schema::dropIfExists('medium_types'); 
+        
     }
 }

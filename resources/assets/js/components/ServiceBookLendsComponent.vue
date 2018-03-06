@@ -3,25 +3,29 @@
          <div class="container">
             <div class="card">
                 <header class="card-header">
-                  <p class="card-header-title">Ausleihen</p>
+                  <p class="card-header-title"></p>
                 </header>
                 <div class="card-content">
                   <!-- form v-on:submit.prevent="onSubmit"-->
                   <div v-on:keyup = "getUser" >
-                    <input-text v-bind:formdata="fh"  element="id" caption="Ausleiher: (Nummer)"/>
+                    <input-text 
+                      v-bind:formdata="fh"  
+                      element="id" 
+                      caption="Ausleiher: (Nummer)" 
+                      placeholder="Geben Sie bitte die Nummer des Ausleihers ein"/>
                     <p v-text="info"></p>
                   </div>
               </div>
           </div>
       </div>
       <div class="container" v-if='id'>
-          <ul v-for="(book,key) in books">
-            <li>{{book.title}} <a class="btn danger" v-on:click="removeBook(key)">x</a></li>
-          </ul>
-          <div v-on:keyup = "addBook" >
-            <input-text v-bind:formdata="fh" element="newbook" caption="neues Buch"></input-text>
+          <div class="row" v-for="(book,key) in books">
+            <div class="col-4">{{book.title}}</div> 
+            <div class="col-1"><a class="btn btn danger" v-on:click="removeBook(key)">x</a></div>
           </div>
-          {{id}}
+          <div v-on:keyup = "addBook" >
+            <input-text v-bind:formdata="fh" element="newbook" caption="Medium" placeholder="Neue Medium-Nr"></input-text>
+          </div>
       </div>
     </div>
 </template>
@@ -44,7 +48,7 @@ export default {
     };
   },
 
-  props: ["restGetUser","restGetBook"],
+  props: ["restGetUser", "restGetBook"],
 
   methods: {
     getUser: function(event) {
@@ -52,7 +56,7 @@ export default {
       if (event.keyCode == 13) {
         if (this.fh.id) {
           axios
-            .get(this.restGetUser+'/' + this.fh.id)
+            .get(this.restGetUser + "/" + this.fh.id)
             .then(response => {
               this.id = this.fh.id;
               this.info = response.data.name + "(" + response.data.email + ")";
@@ -68,27 +72,8 @@ export default {
     },
 
     removeBook(bookid) {
-      /*
-      axios
-        .get("rest/get/isbn/" + this.formdata.isbn13)
-        .then(response => {
-          this.isLoadingClass = "";
-          console.log(response.data);
-          this.formdata.author = response.data.author;
-          this.formdata.title = response.data.title;
-          this.formdata.descr =
-            "irgendeinwert, damit da auch mal was drin steht";
-          this.formdata.isbn13 = response.data.isbn13;
-          this.formdata.ErrObj.clear();
-        })
-        .catch(error => {
-          this.isLoadingClass = "";
-          alert(error.message);
-          console.log(error);
-        });
-      */
-      this.books.splice(bookid,1);
-      console.log(bookid,": wird entfernt!");
+      this.books.splice(bookid, 1);
+      console.log(bookid, ": wird entfernt!");
     },
 
     addBook: function(event) {
@@ -96,15 +81,13 @@ export default {
       if (event.keyCode == 13) {
         if (this.fh.id) {
           axios
-            .get(this.restGetBook+'/' + this.fh.newbook)
+            .get(this.restGetBook + "/" + this.fh.newbook)
             .then(response => {
               let tmpbook = response.data;
               this.newbookid = tmpbook.id;
-              //console.log (response.data);
               this.books.push(response.data);
               this.fh.newbook = "";
               this.newbook = "";
-              console.log(this.books);
             })
             .catch(error => {
               this.info = "fehler bei der Buchsuche";

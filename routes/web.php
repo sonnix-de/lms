@@ -26,6 +26,13 @@ Route::group(['prefix' => '/lms', 'as' => 'lms-' ], function()
     Route::get('/service', 'LmsController@index')->name('service');
 });
 
+// die Admin-Routen
+Route::group(['prefix' => '/admin', 'as' => 'admin-' ], function()
+{
+    Route::get('/set-features', 'LmsController@setFeatures')->name('set-features');
+});
+
+
 // dieDaten-Routen
 Route::group(['prefix' => '/rest'  ], function()
 {

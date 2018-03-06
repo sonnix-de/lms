@@ -10,8 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feature extends Model
 {
-    const AUSLEIHEN = 'ausleihen';
-    const MEDIEN_VERWALTUNG = 'medienverwaltung';
-    const STATISTIK = 'statistik';
-    Const ARTICLES = 'articles';
+    const AUSLEIHEN = 'Ausleihen';
+    const MEDIEN_VERWALTUNG = 'Medienverwaltung';
+    const STATISTIK = 'Statistik';
+    Const ARTICLES = 'Articles';
+    Const BENUTZER = 'User';
+
+    protected $fillable = ['key'];
+
+
 }

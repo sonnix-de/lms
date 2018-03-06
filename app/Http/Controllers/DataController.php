@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Medien;
 use App\Http\Resources\MedienResource;
+use App\Feature;
 
 /**
  * dieser Controller liefert div. Restabfragen aus.
@@ -24,8 +25,16 @@ class DataController extends Controller
     /**
      * Bringt die gewünschten Features ans Licht.
      */
-    public function getFeature(Request $request, $feature = "")
+    public function getFeature(Request $request, $key = "")
     {
+        if ($key)
+        {
+            $features = Feature::where('key',$key)->get();
+            if (sizeof($features))
+            {
+                return $features->first();
+            }
+        }
         return json_encode(['title'=>'Feature-Title','descr'=>'feature Description','img'=>'irgeineinbloedesImage']);
     }
 

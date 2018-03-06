@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Ausleihen
+     */
+    public function lends()
+    {
+        return $this->hasMany('App\Lend','user_id');
+    }
+
 }

@@ -8,9 +8,9 @@
                 <p class="control">
                 <input  class="input" 
                         type="text" 
-                        name=element 
+                        :name="element"
                         v-model=formdata[element] 
-                        placeholder=caption>
+                        :placeholder="placeholder" />
                 </p>
                 <span class="help is-danger" >{{formdata.getError(element)}}</span>
             </div>
@@ -22,9 +22,9 @@
 
 <script>
 export default {
-  props: ["element", "formdata", "caption"],
+  props: ["element", "formdata", "caption","placeholder"],
   mounted() {
-    //console.log("input text Component mounted.");
+    console.log("input text Component mounted.");
   }
 };
 </script>

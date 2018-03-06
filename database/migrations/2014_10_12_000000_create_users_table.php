@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(['name' => 'sonnix','email'=>'lms@sonnix.de',
+        'password'=> Hash::make('test')]);
     }
 
     /**

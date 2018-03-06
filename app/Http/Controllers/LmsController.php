@@ -14,7 +14,7 @@ use App\Article;
  * 
  * @author hans-juergen@sonnix.de
  * @version 1.0
- * @
+ * 
  * 
  */
 class LmsController extends Controller
@@ -46,5 +46,30 @@ class LmsController extends Controller
         $articleTypes = [Article::INTERN];
 
         return view('home', compact('features','articleTypes'));
+    }
+
+    /**
+     * Füllt die verhandenen Features in die Feature tabelle:
+     */
+    public function setFeatures(Request $request)
+    {
+        
+        $features = [
+            ['key' => 'User', 'title'=>'Benutzerverwaltung','descr' => 'Ausleihe von neuen Medien', 'route' => 'lms-medien'],
+            ['key' => Feature::AUSLEIHEN,  'title'=>'','Ausleihen' => 'Ausleihe von neuen Medien', 'descr'=>'Ausleihe und Rückgabe', 'route' => 'lms-lends'],
+            ['key' => Feature::ARTICLES, 'title'=>'Artikelverwaltung','descr' => 'Artikelverwaltung', 'route' => 'lms-lends'],
+            ['key' => Feature::MEDIEN_VERWALTUNG,'title'=>'Medienverwaltung', 'descr' => 'Medienverwaltung', 'route' => 'lms-medien'],
+            ['key' => Feature::STATISTIK, 'title'=>'Service', 'descr' => 'sTatistik, ', 'route' => 'lms-service'],
+        ];
+        
+        
+        foreach ($features as $feature)
+        {
+            $record = Feature::firstOrCreate (['key'=>$feature['key']]);
+            $record->title = $feature['title'];
+            $record->descr = $feature['descr'];
+            $record->route = $feature['route'];
+            $record->save();
+        }
     }
 }
