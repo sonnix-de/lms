@@ -16,7 +16,7 @@ class Feature extends Model
     Const ARTICLES = 'Articles';
     Const BENUTZER = 'User';
 
-    protected $fillable = ['key'];
+    protected $fillable = ['key','title','descr','route'];
 
 
 }

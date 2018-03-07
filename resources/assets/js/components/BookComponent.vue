@@ -8,7 +8,7 @@
         <input-text v-bind:formdata="fh"  element="id" caption="id"/>
         <input-text v-bind:formdata="fh"  element="title" caption="Titel"/>
         <input-text v-bind:formdata="fh"  element="author" caption="Autor"/>
-        <input-text-area v-bind:formdata="fh"  element="content" caption="Inhalt"/>
+        <!-- input-text-area v-bind:formdata="fh"  element="content" caption="Inhalt"/ -->
         <input-isbn-lookup v-bind:formdata="fh"  element="isbn13" caption="Isbn"/>
 
         <a class="button is-success" :class="isLoadingClass" v-on:click="onSubmit()">Speichern </a>

@@ -29,7 +29,7 @@ class User extends Authenticatable
 
 
     /**
-     * Ausleihen
+     * Ausleihen für den User
      */
     public function lends()
     {

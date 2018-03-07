@@ -12,6 +12,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('font/css/open-iconic-bootstrap.min.css') }}" rel="stylesheet">
         <link rel="manifest" href="{{ asset("manifest.json")}}" />
     </head>
     <body>

@@ -53,7 +53,7 @@ class LmsController extends Controller
      */
     public function setFeatures(Request $request)
     {
-        
+        return;
         $features = [
             ['key' => 'User', 'title'=>'Benutzerverwaltung','descr' => 'Ausleihe von neuen Medien', 'route' => 'lms-medien'],
             ['key' => Feature::AUSLEIHEN,  'title'=>'','Ausleihen' => 'Ausleihe von neuen Medien', 'descr'=>'Ausleihe und Rückgabe', 'route' => 'lms-lends'],

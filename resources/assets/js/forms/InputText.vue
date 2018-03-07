@@ -12,7 +12,7 @@
                         v-model=formdata[element] 
                         :placeholder="placeholder" />
                 </p>
-                <span class="help is-danger" >{{formdata.getError(element)}}</span>
+                <!-- span class="help is-danger" >{{formdata.getError(element)}}</span-->
             </div>
         </div>
     </div>

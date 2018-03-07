@@ -30,6 +30,7 @@ Route::group(['prefix' => '/lms', 'as' => 'lms-' ], function()
 Route::group(['prefix' => '/admin', 'as' => 'admin-' ], function()
 {
     Route::get('/set-features', 'LmsController@setFeatures')->name('set-features');
+    Route::get('/features/feature/{id}', 'FeatureController@edit')->name('edit-feature');
 });
 
 
@@ -48,6 +49,7 @@ Route::group(['prefix' => '/rest'  ], function()
 
     // features 
     Route::get('/get/feature/{name}', 'DataController@getFeature')->name('restGetFeature');
+    Route::post('/post/feature/{name}', 'FeatureController@update')->name('restPostFeature');
 
     // user
     Route::get('/get/user/id/{id?}', function($id) {

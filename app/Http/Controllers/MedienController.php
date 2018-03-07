@@ -43,8 +43,7 @@ class MedienController extends Controller
 
     public function getBook(Request $request, $id)
     {
-        return json_encode(Medien::find($id)->toArray());
-        return MedienResource::collection(Medien::find($id));
+        return Medien::find($id)->toJson();
     }
 
     /**
@@ -77,11 +76,6 @@ class MedienController extends Controller
         $workbook->fill($params);
         $workbook->isbn13 = $params['isbn13'];
         $workbook->save();
-        //echo print_r($workbook->toArray());
-        //exit();
-
-        //$workbook->update($request->post);
-        //$workbook->save();
         return $this->getBook(request(), $id);
     }
 

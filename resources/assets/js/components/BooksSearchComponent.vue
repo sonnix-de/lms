@@ -9,7 +9,7 @@
       <div class="card-content">
               <h2 class="subtitle">Suchkriterien</h2>
               <!-- form v-on:submit.prevent="onSubmit"-->
-              <input-text v-bind:formdata="fh" element="searchterm" caption="Suchbegriff"/>
+              <input-text v-bind:formdata="fh"  element="searchterm" caption="Suchbegriff"/>
               <input-text v-bind:formdata="fh"  element="title" caption="Titel"/>
               <input-text v-bind:formdata="fh"  element="author" caption="Autor"/>
               <!--a class="button is-success" :class="isLoadingClass" v-on:click="onSubmit()">Medien Suchen</a-->

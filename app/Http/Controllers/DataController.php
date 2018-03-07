@@ -24,18 +24,25 @@ class DataController extends Controller
 
     /**
      * Bringt die gewünschten Features ans Licht.
+     * wenn nicht gefunden, wird der Datensatz angelegt.
      */
-    public function getFeature(Request $request, $key = "")
+    public function getFeature(Request $request, $key = "", $newCreated=false)
     {
         if ($key)
         {
             $features = Feature::where('key',$key)->get();
             if (sizeof($features))
             {
-                return $features->first();
+                return $features->first()->toJson();
+            }
+            if (!$newCreated)
+            {
+                $record = Feature::create(['key'=>$key,'title'=>$key,'descr'=>'gerade neu angelegt!']);
+                return $this->getFeature($request,$key,true);
+
             }
         }
-        return json_encode(['title'=>'Feature-Title','descr'=>'feature Description','img'=>'irgeineinbloedesImage']);
+        return json_encode(['title'=>$key,'descr'=>'Fehler bei der Anlage','img'=>'irgeineinbloedesImage']);
     }
 
 

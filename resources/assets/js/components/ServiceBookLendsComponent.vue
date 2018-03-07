@@ -19,7 +19,6 @@
           </div>
       </div>
       <div class="container" v-if='id'>
-          <div class="row" v-for="(book,key) in books">
             <div class="col-4">{{book.title}}</div> 
             <div class="col-1"><a class="btn btn danger" v-on:click="removeBook(key)">x</a></div>
           </div>
@@ -40,10 +39,7 @@ export default {
       newbook: "",
       id: "1",
       info: "info",
-      fh: new FormHelper({
-        id: "1",
-        idBook: "",
-        newbook: ""
+      fh: new FormHelper({        id: "1",        idBook: "",        newbook: ""
       })
     };
   },
