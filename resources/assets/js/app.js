@@ -16,9 +16,9 @@ Vue.component('service-book-lends-component', require('./components/ServiceBookL
 Vue.component('books-search-component', require('./components/BooksSearchComponent.vue'));
 Vue.component('page-component', require('./components/PageComponent.vue'));
 Vue.component('paragraph-component', require('./components/Paragraphs/ParagraphComp.vue'));
-Vue.component('feature-display', require('./components/FeatureDisplay.vue'));
+Vue.component('feature-component', require('./components/FeatureComponent.vue'));
 
-
+/* Form-Controls */
 Vue.component('input-text', require('./forms/InputText.vue'));
 Vue.component('input-text-area', require('./forms/InputTextArea.vue'));
 Vue.component('input-isbn-lookup', require('./forms/InputIsbnAndLookup'));

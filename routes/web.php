@@ -48,7 +48,7 @@ Route::group(['prefix' => '/rest'  ], function()
 
 
     // features 
-    Route::get('/get/feature/{name}', 'DataController@getFeature')->name('restGetFeature');
+    Route::get('/get/feature/{name}', 'FeatureController@show')->name('restGetFeature');
     Route::post('/post/feature/{name}', 'FeatureController@update')->name('restPostFeature');
 
     // user

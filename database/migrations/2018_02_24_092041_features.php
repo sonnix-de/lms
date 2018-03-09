@@ -19,7 +19,7 @@ class Features extends Migration
             $table->string('title',50)->nullable();
             $table->text('descr')->nullable();
             $table->string('route',250)->nullable();
-            $table->integer('available')->default(1);
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

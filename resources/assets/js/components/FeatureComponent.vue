@@ -4,7 +4,7 @@
     <div v-if="editmode == false">
       <!------------------------ Anzeigen ------------------------>
       <div class="card-body">
-        <h5 class="card-title"><a href="#">{{title}}</a>
+        <h5 class="card-title"><a :href="url">{{title}}</a>
           <a href="#" v-on:click="onEdit">
             <span class="oi oi-pencil small" title="pencil" aria-hidden="true"></span>
           </a>
@@ -47,6 +47,8 @@ export default {
       editmode: false,
       title: "",
       descr: "",
+      route: "",
+      url:"",
       isLoadingClass: "",
       // form-Definition:   
        fh: new FormHelper({ key: "",  title: "",  descr: "", route: ""})
@@ -58,6 +60,8 @@ export default {
    */
   created() {
     this.readData();
+    console.log (this.url);
+    console.log ('ich werde gerufen');
   },
 
   methods: {
@@ -70,8 +74,10 @@ export default {
               this.title = response.data.title;
               this.descr = response.data.descr;
               this.route = response.data.route;
+              this.url = response.data.url;
               }
       );
+      
     },
 
     /** 

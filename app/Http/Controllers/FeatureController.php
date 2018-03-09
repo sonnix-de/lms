@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Feature;
+use Illuminate\Http\Request;
 
 class FeatureController extends Controller
 {
@@ -44,9 +44,34 @@ class FeatureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $key, $newCreated = false)
     {
-        //
+        $features = Feature::where('key', $key)->get();
+        if (sizeof($features)) {
+            $feature = $features->first();
+            if ($feature->route)
+            {
+                try
+                {
+                $feature->url = route($feature->route);
+                }
+                catch (\Exception $e) 
+                {
+                    //echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+                }
+            }
+            return $feature->toJson();
+        }            
+        else
+            {
+                $feature->url = "#";
+                return $feature->toJson();
+        }
+        if (!$newCreated) {
+            $record = Feature::create(['key' => $key, 'title' => $key, 'descr' => 'gerade neu angelegt!']);
+            return $this->show($request, $key, true);
+        }
+
     }
 
     /**
@@ -57,7 +82,7 @@ class FeatureController extends Controller
      */
     public function edit($id)
     {
-        return view ('admin.feature',['feature'=>\App\Feature::find($id)]);
+        return view('admin.feature', ['feature' => \App\Feature::find($id)]);
     }
 
     /**
@@ -71,11 +96,11 @@ class FeatureController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'key' => 'required'
+            'key' => 'required',
         ]);
         $params = $request->post();
         $key = $params['key'];
-        $record = Feature::where('key',$key)->first();
+        $record = Feature::where('key', $key)->first();
         $record->update($params);
         //$record->save();
         return $record->toJson();
