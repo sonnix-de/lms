@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Lend extends Model
+class Ausleihen extends Model
 {
     use Notifiable;
     protected $table = 'lends';
@@ -26,9 +26,9 @@ class Lend extends Model
     }
 
     /**
-     * Ausleihroutine.
+     * AusleihRoutine.
      */
-    public static function lend(int $idUser, int $idBook)
+    public static function leiheAus(int $idUser, int $idBook)
     {
         $insert = [
             'user_id' => $idUser,
@@ -44,7 +44,7 @@ class Lend extends Model
     /**
      * bucht ein Buch wieder zurück
      */
-    public static function returnBook(int $idBook)
+    public static function gibZurueck(int $idBook)
     {
         $records = self::where('book_id',$idBook)->where('return_at',null)->get();
         foreach ($records as $record)

@@ -20,7 +20,7 @@
             @else
             {!! \App\Helper\Helpers::getNavigationLink('Start','lms-start') !!}
             {!! \App\Helper\Helpers::getNavigationLink('Medien','lms-medien') !!}
-            {!! \App\Helper\Helpers::getNavigationLink('Ausleihen','lms-lends') !!}
+            {!! \App\Helper\Helpers::getNavigationLink('Ausleihen','lms-ausleihen') !!}
             {!! \App\Helper\Helpers::getNavigationLink('User','lms-user') !!}
             {!! \App\Helper\Helpers::getNavigationLink('Service','lms-service') !!}
             @endguest

@@ -1,0 +1,80 @@
+    <div class="template-ausleihen">
+        <div class="row">
+          <h3>{{message}}</h3>
+        </div>
+      
+      <!-- wenn noch kein User geladen ist: -->
+      <!-- select 2 element: https://sagalbot.github.io/vue-select/docs/Install.html -->
+      <div v-if="id_user == 0">
+        <div class="row" v-on:keyup="fireGetUser">
+            <div class="col-7">
+              <input class="input form-control" type="text" autofocus v-model="id_user_to_load" placeholder="Geben Sie bitte die Nummer des Ausleihers ein">
+            </div>
+            <div class="col-5">
+                <a class="btn btn-success" v-on:click="getUser">Laden</a>
+            </div>
+        </div>
+      </div>
+      <!-- wenn ein User geladen ist -->
+      <div v-if="id_user > 0">
+
+          <div class="row">
+              <div class="col-7">
+                  <p v-text="info"></p>
+              </div>
+          </div>
+          <!-- ---------------------------------------------- -->
+          <!-- jetzt kommen die Medien, die wir laden wollen -->
+          <!-- ---------------------------------------------- -->
+          <!-- geladene Medien -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titel</th>
+              <th scope="col">Autor</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(book, index) in books">
+              <th scope="row">{{index+1}}</th>
+              <td>{{ book.title}}</td>
+              <td>{{ book.author}}</td>
+              <td><a class="btn btn-danger" v-on:click="removeBook(index)">x</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+          <div class="row" v-on:keyup="fireAddBook">
+            <div class="col-3">
+                <input class="input form-control" id="newbookid" type="text" ref="refnewbook" v-model="id_new_book" placeholder="Neue Medium-Nr">
+            </div>
+            <div class="col-2">
+                <a class="btn btn-default" v-on:click="addBook">Buch laden</a>
+            </div>                        
+          </div>
+          <!-- ---------------------------------------------- -->
+          <!-- Abschluss -->
+          <!-- ---------------------------------------------- -->                  
+          <hr>
+          <div class="row">
+            <div class="col-12">
+                <button class="btn btn-success" type="button" v-on:click="saveAusleihe">Ausleihe speichern</button>
+                <button class="btn btn-danger" type="button" v-on:click="cancelAusleihe">Ausleihe abbreichen</button>
+              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5">
+              <input class="form-control" name="email" type="text" placeholder="email-Adresse einfügen">
+              </div>
+              <div class="col-7">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" id="inlineCheckboxSendMail" type="checkbox" value="sendemail" disabled>
+                  <label class="form-check-label" for="inlineCheckboxSendMail">Ausleihe auch per E-Mail schicken</label>
+                </div>                        
+              </div>
+          </div>
+        </div>
+    </div>

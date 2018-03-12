@@ -6,7 +6,7 @@
         <service-book-lends-component 
             rest-get-user="{{route('restGetUser')}}"
             rest-get-book="{{route('restGetBook')}}"
+            rest-ausleihe="{{route('restAusleihe')}}"
             >
     </div>
-
 @endsection

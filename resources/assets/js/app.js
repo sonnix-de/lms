@@ -12,7 +12,7 @@ window.Vue = require('vue');
 window.FormHelper = FormHelper;
 
 Vue.component('book-component', require('./components/BookComponent.vue'));
-Vue.component('service-book-lends-component', require('./components/ServiceBookLendsComponent.vue'));
+Vue.component('service-book-lends-component', require('./components/lms/AusleihenComponent.vue'));
 Vue.component('books-search-component', require('./components/BooksSearchComponent.vue'));
 Vue.component('page-component', require('./components/PageComponent.vue'));
 Vue.component('paragraph-component', require('./components/Paragraphs/ParagraphComp.vue'));

@@ -21,7 +21,7 @@ Route::group(['prefix' => '/lms', 'as' => 'lms-' ], function()
 {
     Route::get('/', 'LmsController@index')->name('start');
     Route::get('/medien', 'MedienController@index')->name('medien');
-    Route::get('/ausleihen', 'LendController@index')->name('lends');
+    Route::get('/ausleihen', 'AusleihenController@index')->name('ausleihen');
     Route::get('/user', 'LmsController@index')->name('user');
     Route::get('/service', 'LmsController@index')->name('service');
 });
@@ -42,6 +42,8 @@ Route::group(['prefix' => '/rest'  ], function()
     Route::get('/get/books/{search?}', 'MedienController@getBooks')->name('restGetBooks');
     Route::get('/get/isbn/{isbn}', 'MedienController@getIsbnData');
     Route::post('/post/book/update', 'MedienController@updateBook');
+
+    Route::post('/post/ausleihe', 'AusleihenController@ausleihe')->name('restAusleihe');
 
     // article
     Route::get('/get/page/{field}/{value}', 'ArticleController@show');
