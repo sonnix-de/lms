@@ -1,7 +1,5 @@
     <div class="template-ausleihen">
-        <div class="row">
-          <h3>{{message}}</h3>
-        </div>
+
       
       <!-- wenn noch kein User geladen ist: -->
       <!-- select 2 element: https://sagalbot.github.io/vue-select/docs/Install.html -->
@@ -11,7 +9,7 @@
               <input class="input form-control" type="text" autofocus v-model="id_user_to_load" placeholder="Geben Sie bitte die Nummer des Ausleihers ein">
             </div>
             <div class="col-5">
-                <a class="btn btn-success" v-on:click="getUser">Laden</a>
+                <button class="btn btn-outline-info" v-on:click="getUser">Laden</button>
             </div>
         </div>
       </div>
@@ -27,7 +25,7 @@
           <!-- jetzt kommen die Medien, die wir laden wollen -->
           <!-- ---------------------------------------------- -->
           <!-- geladene Medien -->
-        <table class="table">
+        <table class="table table-sm table-striped ">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -41,7 +39,7 @@
               <th scope="row">{{index+1}}</th>
               <td>{{ book.title}}</td>
               <td>{{ book.author}}</td>
-              <td><a class="btn btn-danger" v-on:click="removeBook(index)">x</a></td>
+              <td><button class="btn btn-outline-danger btn-sm" v-on:click="removeBook(index)">x</button></td>
             </tr>
           </tbody>
         </table>
@@ -51,30 +49,56 @@
                 <input class="input form-control" id="newbookid" type="text" ref="refnewbook" v-model="id_new_book" placeholder="Neue Medium-Nr">
             </div>
             <div class="col-2">
-                <a class="btn btn-default" v-on:click="addBook">Buch laden</a>
+                <button class="btn btn-outline-info" v-on:click="addBook">Buch laden</button>
             </div>                        
           </div>
           <!-- ---------------------------------------------- -->
           <!-- Abschluss -->
           <!-- ---------------------------------------------- -->                  
           <hr>
-          <div class="row">
-            <div class="col-12">
-                <button class="btn btn-success" type="button" v-on:click="saveAusleihe">Ausleihe speichern</button>
-                <button class="btn btn-danger" type="button" v-on:click="cancelAusleihe">Ausleihe abbreichen</button>
-              </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-5">
-              <input class="form-control" name="email" type="text" placeholder="email-Adresse einfügen">
-              </div>
-              <div class="col-7">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" id="inlineCheckboxSendMail" type="checkbox" value="sendemail" disabled>
-                  <label class="form-check-label" for="inlineCheckboxSendMail">Ausleihe auch per E-Mail schicken</label>
-                </div>                        
-              </div>
-          </div>
+          <button class="btn btn-outlet-primary" data-target="#ausleihe-speichern" data-toggle="modal" type="button">
+              Ausleihe speichern
+          </button>
+           <button class="btn btn-outline-danger"  type="button" v-on:click="cancelAusleihe">Ausleihe abbrechen</button>
+  
+  
         </div>
+        <!-- ------------------------- -->
+        <!-- Modales Fenster           -->
+        <!-- ------------------------- -->
+        <div class="modal fade" id="ausleihe-speichern" role="dialog" aria-hidden="false" aria-labelledby="exampleModalLabel" tabindex="-1">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ausleihe abschliessen</h5>
+                <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-12">
+                  <div class="row">
+                      <button class="btn btn-outline-info" data-dismiss="modal" type="button" v-on:click="saveAusleihe">Ausleihe speichern</button>
+                      <p class="form-text text-muted">Die ausgeliehen Medien speichern und Ausleihe abschließen</p>
+                  </div>
+                  <hr/>
+                  <div class="row">
+                      
+                      <input class="form-control" name="email" type="text" placeholder="email-Adresse einfügen">
+                       <!-- das geht nur, wenn eine E-Mail adresse angegeben ist. -->
+                      <button class="btn btn-outline-info" data-dismiss="modal" type="button" v-on:click="saveAusleiheAndSendMail">Ausleihe speichern und Email senden</button>
+                      <p class="form-text text-muted">Ausleihe speichern und zusätzlich eine Übersicht der ausgeliehen Medien per E-Mail zuschicken?</p>
+                  </div>
+                  <hr/>
+                </div>
+              
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-default" data-dismiss="modal" type="button" aria-label="Zurück">zurück zur Ausleihe</button>
+                  
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
+</div>

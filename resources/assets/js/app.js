@@ -11,6 +11,28 @@ import FormHelper from './utilities/FormHelper'
 window.Vue = require('vue');
 window.FormHelper = FormHelper;
 
+import VueSweetAlert from 'vue-sweetalert'
+Vue.use(VueSweetAlert)
+
+import VueFlashMessage from 'vue-flash-message';
+require('vue-flash-message/dist/vue-flash-message.min.css');
+//Vue.use(VueFlashMessage);
+
+const template = `
+    <div>
+        <div v-for="(message, index) in storage"   :key="index" >
+            <div class="alert flash__message-content" v-html="message.content"></div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            v-html="message.content
+      </div>
+                
+        </div>
+  </div>
+`;
+Vue.use(VueFlashMessage ); //{ template }
+
+
+
 Vue.component('book-component', require('./components/BookComponent.vue'));
 Vue.component('service-book-lends-component', require('./components/lms/AusleihenComponent.vue'));
 Vue.component('books-search-component', require('./components/BooksSearchComponent.vue'));

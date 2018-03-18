@@ -9,7 +9,6 @@ export default {
       id_user_to_load: "",
       info: "",
       message: "",
-      fh: new FormHelper({ id: "", idBook: "", newbook: "" })
     };
   },
 
@@ -48,8 +47,26 @@ export default {
     },
 
     cancelAusleihe: function() {
+
       this.id_user_to_load = "";
       this.id_user = "";
+
+      /*
+      this.$swal({
+        title: 'Soll die Ausleihe abgebrochen werden?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ja, Ausleihe abbrechen!'
+        }).then((result) => {
+               if (result.value) {
+            }
+        })
+        */
+    },
+
+    saveAusleiheAndSendMail: function()
+    {
+      this.saveAusleihe();
     },
 
     saveAusleihe: function() {
@@ -60,11 +77,12 @@ export default {
                     console.log(response);
                     this.id_user = "";
                     this.id_user_to_load = "";
-                    this.message = "ausleihe ist durchgeführt worden!";
                     this.books = [];
+                    this.flash('Der Ausleihevorgang ist erfolgreich abgeschlossen worden', 'success', {  timeout: 3000});
                 })
                 .catch(error => {
                     console.log (error);
+                    this.flash('Beim Speichern der Ausleihe ist ein Fehler aufgetreten', 'error', {  timeout: 13000});
                     //reject(error.response.data);
                 });        
 
@@ -151,6 +169,8 @@ export default {
 
     created() {
       console.log("service-book-lends created ");
+      Flash('test');
+      console.log("service-book-lends fertig ");
     },
 
     mounted() {

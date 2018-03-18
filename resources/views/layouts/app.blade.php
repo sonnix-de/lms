@@ -16,11 +16,13 @@
         <link rel="manifest" href="{{ asset("manifest.json")}}" />
     </head>
     <body>
-            @include ('layouts.navigation-lms')
+            @include ('layouts.navigation-lms') 
 
             <main role="main" class="container">
 
                 <div id="app">
+                    <flash-message class="alert"></flash-message>
+
                     @yield('content')
                 </div>
             </main>

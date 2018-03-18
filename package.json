@@ -18,5 +18,9 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.13.0",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "vue-flash-message": "^0.6.0",
+        "vue-sweetalert": "^0.1.18"
     }
 }
