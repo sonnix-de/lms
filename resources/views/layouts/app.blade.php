@@ -21,7 +21,7 @@
             <main role="main" class="container">
 
                 <div id="app">
-                    <flash-message class="alert"></flash-message>
+                    <flash-component></flash-component>
 
                     @yield('content')
                 </div>

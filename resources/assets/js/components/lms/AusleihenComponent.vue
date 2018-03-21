@@ -25,6 +25,8 @@ export default {
       if (!this.id_user_to_load) {
         return;
       }
+      Flash.info('Kunde gefunden');
+
       axios
         .get(this.restGetUser + "/" + this.id_user_to_load)
         .then(response => {
@@ -50,6 +52,7 @@ export default {
 
       this.id_user_to_load = "";
       this.id_user = "";
+      Flash.danger('die aktuelle Ausleihe wurde abgebrochen');
 
       /*
       this.$swal({
@@ -78,11 +81,11 @@ export default {
                     this.id_user = "";
                     this.id_user_to_load = "";
                     this.books = [];
-                    this.flash('Der Ausleihevorgang ist erfolgreich abgeschlossen worden', 'success', {  timeout: 3000});
+                    Flash.info('Der Ausleihevorgang ist erfolgreich abgeschlossen worden' );
                 })
                 .catch(error => {
                     console.log (error);
-                    this.flash('Beim Speichern der Ausleihe ist ein Fehler aufgetreten', 'error', {  timeout: 13000});
+                    Flash.danger('Beim Speichern der Ausleihe ist ein Fehler aufgetreten');
                     //reject(error.response.data);
                 });        
 
@@ -149,7 +152,9 @@ export default {
           console.log(response.data);
         })
         .catch(error => {
-          this.info = "fehler bei der Buchsuche";
+          this.info = "";
+          //Flash.warning('Buch mit der Nummer kann nicht gefunden werden!');
+          Flash.warning('Buch mit der Nummer:'+this.id_new_book+' kann nicht gefunden werden!');
         });
     },
 
@@ -169,15 +174,17 @@ export default {
 
     created() {
       console.log("service-book-lends created ");
-      Flash('test');
+      Flash.info('created');
       console.log("service-book-lends fertig ");
     },
 
     mounted() {
       console.log("service-book-lends Mounted");
+      Flash.info('mounted');
     },
 
     updated() {
+      Flash.info('updated');
       console.log("service-book-lends Mounted");
     }
   }

@@ -1,0 +1,279 @@
+-- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
+--
+-- Host: localhost    Database: lms
+-- ------------------------------------------------------
+-- Server version	5.7.21-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `articles`
+--
+
+DROP TABLE IF EXISTS `articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_article_id` int(11) DEFAULT NULL,
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teaser` text COLLATE utf8mb4_unicode_ci,
+  `content` json DEFAULT NULL,
+  `online` date DEFAULT NULL,
+  `offline` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articles`
+--
+
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nr` int(11) NOT NULL,
+  `barcode` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_medium_type` int(10) unsigned DEFAULT NULL,
+  `isbn13` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `edition` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pages` int(11) NOT NULL,
+  `publisher` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `published_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `published_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `serie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signatur` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lib_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lib_added_date` date DEFAULT NULL,
+  `lib_removed_date` date DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `antonlin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `books_nr_unique` (`nr`),
+  KEY `books_id_medium_type_foreign` (`id_medium_type`),
+  KEY `books_id_index` (`id`),
+  CONSTRAINT `books_id_medium_type_foreign` FOREIGN KEY (`id_medium_type`) REFERENCES `medium_types` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (1,705747,'9785801608044',1,'9791663442559','Candida,Jenkins','Shaina Mante','Cupiditate dicta ut laborum ut sint. Quis facilis in expedita ea tenetur dolorem. Qui incidunt deleniti officiis nesciunt consequatur. Velit excepturi ullam at eius voluptatibus.','Wyatt Volkman',27617,'Prof. Kaitlyn Collier II','1996','South Wilsontown','Ryder Huels DVM','1973','unknown','test','2006-04-24','1979-01-11','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(2,540746,'9789749959930',1,'9788457768605','Yasmeen,Sawayn','Tillman O\'Kon IV','Ad natus maiores maxime repudiandae quaerat. Asperiores ipsum magni vitae eaque.','Miss Aglae Quitzon',34761,'Tod Bins','1994','Malvinabury','Felicia Wisoky','1975','unknown','test','2012-09-05','1985-04-27','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(3,489523,'9787844212936',1,'9792730806038','Carmen,Nienow','Virginie Douglas','Et alias nihil aspernatur omnis quod magni sed. Consectetur maiores exercitationem fugit itaque voluptatem earum voluptatem. Amet repellendus veritatis animi mollitia id illum.','Prof. Gillian Yundt DDS',27696,'Carmine Ledner','1986','North Mellie','Dr. Chaz Tillman','2015','unknown','test','2001-05-18','1972-09-16','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(4,196105,'9793148223653',1,'9788036111501','Maribel,Rau','Dr. Jermaine Reichert Jr.','Quos tempore qui delectus est ea. Ea soluta numquam omnis vel maiores id. Nam distinctio quia fugiat voluptates aut sed aperiam voluptates.','Mervin Quigley',20602,'Dr. Oral Ebert','1977','Port Nathenmouth','Adelle Halvorson I','1972','unknown','test','2014-11-01','1971-12-16','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(5,192983,'9796033224308',1,'9793860707981','Orval,Harber','Dr. Korey Medhurst PhD','Dolorem sed labore veritatis perferendis. Amet dolorum enim ut quibusdam.','Otto Littel',48914,'Alanna Carter','1994','New Alyshastad','May Kautzer','2000','unknown','test','2015-06-26','1971-06-20','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(6,533228,'9780794596361',1,'9795023262474','Bruce,Feeney','Prof. Marilou Schumm','Et soluta assumenda temporibus eos amet ut. Voluptates ratione dolores laudantium. Explicabo aut quasi totam commodi quo.','Katharina Miller',27487,'Estell Hagenes','2004','Alisamouth','Dayton Rempel','2002','unknown','test','1978-05-06','1977-02-27','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(7,504416,'9799282793250',1,'9799718229322','Lucienne,Gaylord','Cory Bahringer','Esse unde corporis non quia quis aut expedita. Quia delectus omnis tempore necessitatibus et distinctio. Quam distinctio optio unde id. Aut et et quis dolores neque porro magni.','Miss Ericka Shanahan I',26829,'Prof. Lauretta Hettinger IV','2009','Harveyhaven','Eulalia Buckridge','2002','unknown','test','2000-11-26','1975-05-30','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(8,991408,'9793729045667',1,'9780773642782','Chet,Thiel','Nicola Klocko','Mollitia consectetur et voluptatem error nam. Ut consequatur autem laborum aliquam suscipit natus. Illum qui quisquam quia eum sint non. Fugiat unde qui dolore maxime minus architecto ea itaque.','Effie Hoeger',33876,'Dr. Deon Morar PhD','2002','Nathenland','Dusty Hane','2002','unknown','test','1971-10-05','1992-03-30','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(9,427953,'9792452584191',1,'9796908361008','Gage,Buckridge','Laverna Rowe','Debitis fugiat quos nihil dolores pariatur laboriosam. Nihil libero autem aut aut porro nihil autem. Qui labore sint labore.','Kallie O\'Hara',37685,'Karli Dietrich Sr.','2000','Norvalbury','Joey Lueilwitz DDS','2006','unknown','test','1977-07-24','2007-04-17','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(10,690804,'9784417099208',1,'9786087045059','Ronaldo,Zieme','Fermin Hansen','Et nam qui labore voluptatum exercitationem. Adipisci et voluptas qui adipisci magnam unde dolor. Est id quo explicabo odio ut totam magni. Esse quis aperiam voluptatem cum explicabo.','Prof. Dashawn Hammes DVM',2067,'Susana Reilly','1998','Port Marinaburgh','Antonette Zemlak','2013','unknown','test','1998-08-27','2009-02-16','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(11,78956,'9791187019053',1,'9781588451101','Travon,Rippin','Selena Gleichner','Placeat enim voluptatum porro eveniet. Eos et et voluptate. Est qui ipsa consectetur quia expedita necessitatibus sapiente.','Lawrence Kuvalis',33178,'Micah Lehner','1978','Domenicstad','Mariano Hoppe','2016','unknown','test','1998-11-21','1990-03-10','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(12,559430,'9783955289409',1,'9782544218417','Jules,Ortiz','Tremaine Mohr','Sed omnis et reiciendis et inventore quas quia ipsam. Fugiat aut quis reiciendis odit temporibus ut. Laboriosam quis qui dolorem magnam similique voluptates.','Tressie McLaughlin',16400,'Dudley Nolan','1984','Lake Heather','Nakia Nolan','1977','unknown','test','2003-06-11','1982-09-20','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(13,730642,'9781224875285',1,'9780019127363','Roy,Rau','Dewitt Lakin','Sit voluptas incidunt pariatur delectus amet quia ipsum eum. Aliquid voluptatem sunt ut tenetur non.','Prof. Preston Little',9823,'Kenya Hauck','1974','North Florenciofort','Floyd Abshire','2017','unknown','test','2014-03-12','1999-12-06','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(14,509678,'9781572981164',1,'9781366975362','Dino,White','Wayne Towne','Voluptatem quam laborum ducimus eligendi. Porro architecto quos voluptas et et possimus aut. Eligendi ex consequatur placeat qui maiores. Laborum fugiat aspernatur molestias aut ullam.','Rudy Nolan',19412,'Bessie Bruen','1993','North Aureliefort','Shanna Ruecker','1977','unknown','test','1983-04-02','1992-10-14','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(15,57917,'9795435870823',1,'9781395585730','Meaghan,Little','Prof. Tristian Spinka','Eos nostrum eveniet quos delectus. Sint quo consequatur libero voluptatem similique distinctio perferendis. Dolorum voluptatem est modi vel nobis.','Yesenia Swaniawski',15632,'Ms. Burdette Zieme','1994','Earnestfort','Mr. Cordell Gusikowski','2017','unknown','test','1997-09-12','2016-11-10','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(16,229164,'9798201040567',1,'9786142537857','Deshawn,Kirlin','Bethany Gorczany','Quia expedita possimus qui et ratione. Nihil asperiores nulla placeat qui optio laborum.','Jazlyn Vandervort',38206,'Colby Heller','2012','Lake Angela','Prof. Joan Fay Sr.','1999','unknown','test','1999-06-27','1985-01-14','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(17,103569,'9797527723260',1,'9784337747784','Deshawn,Kub','Dr. Dolores Thompson DVM','Cum distinctio ipsam et itaque expedita. Molestias dignissimos expedita sed ad nesciunt. Soluta veritatis explicabo eum autem magni non ullam facere.','Dianna Heidenreich',8210,'Sebastian Maggio','1981','West Allie','Anissa Raynor III','1999','unknown','test','1982-07-23','2010-09-27','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(18,925577,'9780835857345',1,'9783509044119','Pete,Mann','Miss Caterina Wisozk Jr.','Voluptatem et laborum enim provident tenetur aspernatur sint. Quibusdam voluptatem illum blanditiis ducimus et. Neque repudiandae est saepe consequuntur id quibusdam. Ut in enim aut.','Lenny Kertzmann',11449,'Eugenia Hessel','2008','Hazelberg','Timmothy Ferry','1970','unknown','test','1980-01-31','1996-09-15','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(19,205736,'9782599619115',1,'9784436626263','Lew,Hermiston','Lela Witting','Eligendi nostrum libero beatae. Dolorem et aliquam voluptatibus sint enim autem modi. Nesciunt magni temporibus commodi dolore sed quisquam omnis.','Lonie Bernier',48683,'Dr. Else Powlowski Sr.','1993','New Armanistad','Derrick Kovacek','2011','unknown','test','1995-12-07','1998-12-28','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL),(20,115374,'9793914016762',1,'9783204179659','Erik,Harris','Hilda Effertz','Soluta nihil dolor ad ut iusto. Iusto enim itaque reiciendis sit aperiam ut itaque. Quas enim veniam rerum itaque.','Dessie Hauck',24449,'Verona O\'Conner','2000','Sandrineport','Elza Block PhD','1987','unknown','test','1979-10-12','2005-01-29','test',NULL,'2018-03-09 17:36:12','2018-03-09 17:36:12',NULL);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `features`
+--
+
+DROP TABLE IF EXISTS `features`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `features` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descr` text COLLATE utf8mb4_unicode_ci,
+  `route` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `active` int(11) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `features`
+--
+
+LOCK TABLES `features` WRITE;
+/*!40000 ALTER TABLE `features` DISABLE KEYS */;
+INSERT INTO `features` VALUES (1,'Articles','Redaktion','Verwaltung von Artikeln','redaktion',1,'2018-03-09 13:25:15','2018-03-09 13:25:46'),(2,'Ausleihen','Ausleihen','Ausleihen','lms-ausleihen',1,'2018-03-09 13:25:15','2018-03-11 18:37:48'),(3,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 13:25:15','2018-03-09 13:25:15'),(4,'Statistik','Statistik','Tages- und Jahresstatistik','lms-service',1,'2018-03-09 13:25:15','2018-03-09 15:57:53'),(5,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:40:48','2018-03-09 13:40:48'),(6,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:41:24','2018-03-09 13:41:24'),(7,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:41:59','2018-03-09 13:41:59'),(8,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 13:42:53','2018-03-09 13:42:53'),(9,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:42:53','2018-03-09 13:42:53'),(10,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 13:42:53','2018-03-09 13:42:53'),(11,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 13:42:53','2018-03-09 13:42:53'),(12,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:42:57','2018-03-09 13:42:57'),(13,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 13:43:12','2018-03-09 13:43:12'),(14,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:43:12','2018-03-09 13:43:12'),(15,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 13:43:12','2018-03-09 13:43:12'),(16,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 13:43:12','2018-03-09 13:43:12'),(17,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 13:43:24','2018-03-09 13:43:24'),(18,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:46:51','2018-03-09 15:46:51'),(19,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:46:51','2018-03-09 15:46:51'),(20,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:46:51','2018-03-09 15:46:51'),(21,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:46:51','2018-03-09 15:46:51'),(22,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:47:01','2018-03-09 15:47:01'),(23,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:47:01','2018-03-09 15:47:01'),(24,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:47:01','2018-03-09 15:47:01'),(25,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:47:01','2018-03-09 15:47:01'),(26,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:05','2018-03-09 15:48:05'),(27,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:05','2018-03-09 15:48:05'),(28,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:05','2018-03-09 15:48:05'),(29,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:05','2018-03-09 15:48:05'),(30,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:15','2018-03-09 15:48:15'),(31,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:15','2018-03-09 15:48:15'),(32,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:15','2018-03-09 15:48:15'),(33,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:15','2018-03-09 15:48:15'),(34,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:20','2018-03-09 15:48:20'),(35,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:20','2018-03-09 15:48:20'),(36,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:20','2018-03-09 15:48:20'),(37,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:20','2018-03-09 15:48:20'),(38,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:24','2018-03-09 15:48:24'),(39,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:24','2018-03-09 15:48:24'),(40,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:24','2018-03-09 15:48:24'),(41,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:24','2018-03-09 15:48:24'),(42,'Articles','Articles','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:26','2018-03-09 15:48:26'),(43,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:26','2018-03-09 15:48:26'),(44,'Statistik','Statistik','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:26','2018-03-09 15:48:26'),(45,'Medienverwaltung','Medienverwaltung','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:26','2018-03-09 15:48:26'),(46,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:33','2018-03-09 15:48:33'),(47,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:35','2018-03-09 15:48:35'),(48,'Ausleihen','Ausleihen','gerade neu angelegt!',NULL,1,'2018-03-09 15:48:40','2018-03-09 15:48:40');
+/*!40000 ALTER TABLE `features` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lends`
+--
+
+DROP TABLE IF EXISTS `lends`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lends` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `book_id` int(10) unsigned NOT NULL,
+  `lend_out_at` datetime NOT NULL,
+  `return_expected_at` datetime NOT NULL,
+  `return_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lends_user_id_foreign` (`user_id`),
+  KEY `lends_book_id_foreign` (`book_id`),
+  CONSTRAINT `lends_book_id_foreign` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
+  CONSTRAINT `lends_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lends`
+--
+
+LOCK TABLES `lends` WRITE;
+/*!40000 ALTER TABLE `lends` DISABLE KEYS */;
+INSERT INTO `lends` VALUES (1,1,1,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:06:19','2018-03-12 21:06:19',NULL),(2,1,2,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:06:19','2018-03-12 21:06:19',NULL),(3,1,1,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:06:52','2018-03-12 21:06:52',NULL),(4,1,2,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:06:52','2018-03-12 21:06:52',NULL),(5,1,5,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:07:57','2018-03-12 21:07:57',NULL),(6,1,6,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:07:57','2018-03-12 21:07:57',NULL),(7,1,7,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:07:57','2018-03-12 21:07:57',NULL),(8,1,1,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:08:47','2018-03-12 21:08:47',NULL),(9,1,2,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:08:47','2018-03-12 21:08:47',NULL),(10,1,1,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:17:16','2018-03-12 21:17:16',NULL),(11,1,2,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:17:16','2018-03-12 21:17:16',NULL),(12,1,3,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:17:16','2018-03-12 21:17:16',NULL),(13,1,4,'2018-03-12 00:00:00','2018-04-09 00:00:00',NULL,'2018-03-12 21:17:16','2018-03-12 21:17:16',NULL),(14,1,1,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(15,1,2,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(16,1,5,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(17,1,3,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(18,1,5,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(19,1,1,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(20,1,10,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:09:09','2018-03-15 17:09:09',NULL),(21,1,1,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:24:14','2018-03-15 17:24:14',NULL),(22,1,2,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:24:14','2018-03-15 17:24:14',NULL),(23,1,1,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:29:20','2018-03-15 17:29:20',NULL),(24,1,2,'2018-03-15 00:00:00','2018-04-12 00:00:00',NULL,'2018-03-15 17:29:20','2018-03-15 17:29:20',NULL),(25,1,1,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:49:14','2018-03-18 12:49:14',NULL),(26,1,2,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:49:14','2018-03-18 12:49:14',NULL),(27,1,3,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:49:14','2018-03-18 12:49:14',NULL),(28,1,1,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:51:05','2018-03-18 12:51:05',NULL),(29,1,2,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:51:05','2018-03-18 12:51:05',NULL),(30,1,3,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:51:05','2018-03-18 12:51:05',NULL),(31,1,4,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 12:51:05','2018-03-18 12:51:05',NULL),(32,1,2,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 13:19:00','2018-03-18 13:19:00',NULL),(33,1,6,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 13:19:00','2018-03-18 13:19:00',NULL),(34,1,1,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 20:16:49','2018-03-18 20:16:49',NULL),(35,1,2,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 20:16:49','2018-03-18 20:16:49',NULL),(36,1,3,'2018-03-18 00:00:00','2018-04-15 00:00:00',NULL,'2018-03-18 20:16:49','2018-03-18 20:16:49',NULL);
+/*!40000 ALTER TABLE `lends` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `medium_types`
+--
+
+DROP TABLE IF EXISTS `medium_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `medium_types` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descr` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `medium_types_id_index` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `medium_types`
+--
+
+LOCK TABLES `medium_types` WRITE;
+/*!40000 ALTER TABLE `medium_types` DISABLE KEYS */;
+INSERT INTO `medium_types` VALUES (1,'buch',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `medium_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (13,'2014_10_12_000000_create_users_table',1),(14,'2014_10_12_100000_create_password_resets_table',1),(15,'2017_12_28_071024_books',1),(16,'2017_12_28_071340_lends',1),(17,'2018_01_08_210740_create_articles_table',1),(18,'2018_02_24_092041_features',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'sonnix','lms@sonnix.de','$2y$10$ZfXA.v2qM0lOtdHlruYowO/GZERcTPWa.x8a1a/gMkvAxV8aPdOWO','QyZE34q77mOEtKzvWsEE3ghVoPZLDdokQKuwxw7I68kGWtLWVaHk84qWHVES',NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-03-18 22:21:08

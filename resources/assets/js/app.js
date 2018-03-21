@@ -11,6 +11,11 @@ import FormHelper from './utilities/FormHelper'
 window.Vue = require('vue');
 window.FormHelper = FormHelper;
 
+
+// hier werden die Logs verwaltet!
+import Flashes from './utilities/FlashesAndLogs'
+
+
 import VueSweetAlert from 'vue-sweetalert'
 Vue.use(VueSweetAlert)
 
@@ -39,6 +44,10 @@ Vue.component('books-search-component', require('./components/BooksSearchCompone
 Vue.component('page-component', require('./components/PageComponent.vue'));
 Vue.component('paragraph-component', require('./components/Paragraphs/ParagraphComp.vue'));
 Vue.component('feature-component', require('./components/FeatureComponent.vue'));
+
+
+/* common Components */
+Vue.component('flash-component', require('./components/commons/FlashComponent.vue'));
 
 /* Form-Controls */
 Vue.component('input-text', require('./forms/InputText.vue'));
